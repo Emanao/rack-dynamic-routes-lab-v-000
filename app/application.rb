@@ -1,3 +1,4 @@
+require 'pry'
 class Application
   @@items = [Item.new("Apples",5.23)]
   def call(env)
@@ -5,6 +6,7 @@ class Application
     req = Rack::Request.new(env)
 
     if req.path.match(/items/)
+      binding.pry
       item_name = req.path.split("/items/").last
       item = @@items.find{|i| i.name == item_name}
 
